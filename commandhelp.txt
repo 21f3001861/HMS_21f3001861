@@ -1,0 +1,2 @@
+source hms/bin/activate
+pip freeze > requirements.txt
