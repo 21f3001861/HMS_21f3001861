@@ -7,3 +7,5 @@ localhelp/
 #venv folder
 hms/
 
+#pycache
+__pycache__/
