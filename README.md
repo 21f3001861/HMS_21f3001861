@@ -1,6 +1,5 @@
-# HMS_21f3001861
-
-Hospital Management System
+# Hospital Management System
+21f3001861
 
 <p>Development Stack:</p>
 <ul>
