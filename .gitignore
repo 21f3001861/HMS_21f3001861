@@ -1,3 +1,8 @@
 #ignore all log files
 *.log
-commandhelp.txt
+
+#local folders
+localhelp/
+
+#venv folder
+hms/
