@@ -1,6 +1,12 @@
-from flask import Flask, request, url_for, render_template
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///appdata.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
+
+database=SQLAlchemy(app)
 
 
 @app.route('/')
