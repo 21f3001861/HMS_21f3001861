@@ -3,9 +3,11 @@
 
 #local folders
 localhelp/
+instance/
 
 #venv folder
 hms/
+.venv/
 
 #pycache
 __pycache__/
