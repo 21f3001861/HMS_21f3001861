@@ -1,14 +1,15 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <style> 
         body {
-        background-image: url('./img/bg.jpg');
-        background-repeat: no-repeat;
+            background-color: rgb(117, 200, 228);
+            background-image: url('/static/bg.jpg');
+            background-repeat: cover;
+            
+        }
+        p {
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+        p .error {
+            columns: red;
         }
         .navbar {
             list-style-type: none;
@@ -23,7 +24,7 @@
         .navbar li.brand a {
             color: white;
             text-align: center;
-            padding: 14px 16px;
+            padding: 14px 16px; 
             text-decoration: none;
             font-family: Arial, sans-serif;
             font-size: 1.5em;
@@ -36,14 +37,14 @@
             display: flex;
             list-style-type: none;
             margin: 0;
-            padding: 10px;
+            padding: 5px;
         }
 
         .navbar ul.right-buttons li a {
             display: block;
             color: white;
             text-align: center;
-            padding: 14px 16px;
+            padding: 5px 16px;
             margin: 0 1px;
             text-decoration: none;
             font-family: Arial, sans-serif;
@@ -58,19 +59,33 @@
         .navbar ul.right-buttons li a.default-btn:hover {
             background-color: #45a049;
         }
-        .footworx {
+        footer { 
             text-align: center;
             font-family: Arial, sans-serif;
             font-size: 0.8em;
-        
+            color:white;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
         }
-        .formcontainer{
-            display: grid;
-            place-items: center; 
+        .formcontainer {
+            width: 350px;
+            position:absolute;
+            top:20%;
+            left:40%;
+            padding: 20px;
+            background-color: #b3ecbd;
+            border-radius: 8px;
+            border: 12px solid-blue;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+        }
             
-        }
+            
         .formcontainer h2 {
             text-align: center;
+            display: block;
+            font-family: Arial, sans-serif;
             color: #333;
             margin-bottom: 20px;
             font-family: Arial, sans-serif;
@@ -87,23 +102,13 @@
             font-size: 0.9em;
         }
 
-    </style>  
-    <title>Hospital Management System</title>
-  </head>
-   
-  <body>
-    
-        <ul class="navbar">
-            <li class="brand"><a href="#">Hospital Management System</a></li>
+        .form-group button {
+            border: none;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
             
-            <ul class="right-buttons">
-                <li><a href="{{url_for('login')}}" class="default-btn">Login</a></li>
-                <li><a href="{{url_for('signup')}}" class="default-btn">Signup</a></li>
-            </ul>
-        </ul>
-    {% block content %}
-    {% endblock %}
-
-    <footer class="footworx">&copy;2025 | HMS by 21f3001861</p></footer>
-  </body>
-</html>
+        }

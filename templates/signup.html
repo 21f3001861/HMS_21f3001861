@@ -1,26 +1,40 @@
-{% extends "common.html" %}
+{% extends "layout.html" %}
 
-{% block title %}Login {% endblock %} 
-
+{% block title %}New User Sign Up {% endblock %} 
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
 {% block content %}
     
     <div class="formcontainer">
         <h2>Sign Up</h2>
-        <form action="">
+        {% if error %}
+            <p class=error><strong>Error:</strong>{{ error }}</p> 
+        {% endif %}
+        <form action="/signup" method="post">
             <div class="form-group">
                 <p><label>Full Name</label>
-                <input type=""text" id="name" placeholder="Ashok Kumar" required></p>
+                <input name='username' type="text" id="name" placeholder="Ashok Kumar" required></p>
             </div>
             <div class="form-group">
                 <p><label>E-mail</label>
-                <input type="email" id="email" placeholder="ashok.kumar@gmail.com" required></p>
+                <input name='email' type="email" id="email" placeholder="ashok.kumar@gmail.com" required></p>
             </div>
             <div class="form-group">
                 <p><label>Password</label>
-                <input type="password" id="passwd" placeholder="Enter password" required></p>
+                <input name='passwd' type="password" id="passwd" placeholder="Enter password" required></p>
             </div>
-            <button type="submit">Sign up</button>
-            <p>Already singned up? <a href="{{url_for('login')}}">Login</a> here.</p>
+            
+            <div class="form-group">
+                <button  type="submit">Sign up</button>
+                <p>Already signed up? <a href="{{url_for('login')}}">Login</a> here.</p>
+            </div>
         </form>
     </div>
 {% endblock %}

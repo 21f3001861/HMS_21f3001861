@@ -1,7 +1,39 @@
-{% extends "common.html" %}
+{% extends "layout.html" %}
 
-{% block title %}Login {% endblock %} 
-
+{% block title %}New User Sign Up {% endblock %} 
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
 {% block content %}
-    <h3> Login</h3>
+    
+    <div class="formcontainer">
+        <h2>User Login </h2>
+        {% if "Successful" in error %}
+            <p class=error><strong>Alert</strong>:{{ error }}</p> 
+        {% elif "Invalid" in error %}
+            <p class=error><strong>Error</strong>:</strong>{{ error }}</p>  
+        {% endif %}
+        <form action="/login" method="post">
+            <div class="form-group">
+                <p><label>User E-mail:</label>
+                <input name='uemail' type="email" id="uemail" placeholder="user@email.tld" required></p>
+            </div>
+            
+            <div class="form-group">
+                <p><label>Password</label>
+                <input name='passwd' type="password" id="passwd" placeholder="Enter password" required></p>
+            </div>
+            
+            <div class="form-group">
+                <button  type="submit">Login</button>
+                <p>Are you a new user? <a href="{{url_for('signup')}}">Sign up</a> to become a member here.</p>
+            </div>
+        </form>
+    </div>
 {% endblock %}

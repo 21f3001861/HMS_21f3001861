@@ -1,11 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends "layout.html" %}
+
+{% block title %}<h1>Welcome to HMS</h1> {% endblock %} 
+ 
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+
+{% block content %}
+    <h3> Home Page     </h3>
+    {% if "Successful" in error %}
+            <p class=error><strong>Alert:</strong>{{ error }}</p> 
+    {% elif "Error" in error %}
+            <p class=error><strong>Error:</strong>{{ error }}</p> 
+    {% endif %}
+{% endblock %}

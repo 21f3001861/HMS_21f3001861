@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css"  href="/static/style.css">
+    <title>Hospital Management System</title>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}   
+  </head>
+   
+  <body>
+        {% if user_logged_in %}
+        
+        {% else %}
+        <ul class="navbar">
+            <li class="brand"><a href="#">Hospital Management System</a></li>
+            
+            <ul class="right-buttons">
+                <li><a href="{{url_for('login')}}" class="default-btn">Login</a></li>
+                <li><a href="{{url_for('signup')}}" class="default-btn">Sign up</a></li>
+            </ul>
+        </ul>
+        
+        {% endif %}
+        
+        <ul class="navbar">
+            <li class="brand"><a href="#">Hospital Management System</a></li>
+            
+            <ul class="right-buttons">
+                <li><a href="{{url_for('login')}}" class="default-btn">Login</a></li>
+                <li><a href="{{url_for('signup')}}" class="default-btn">Sign up</a></li>
+            </ul>
+        </ul>
+    
+        {% block content %}
+        {% endblock %}
+    
+        <footer>&copy;2025-2026 | HMS by 21f3001861</p></footer>
+    
+
+    
+  </body>
+</html>

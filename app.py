@@ -1,11 +1,12 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, date, time
-from flask import  render_template, request, url_for, session, redirect
+from flask import  render_template, request, url_for, session, redirect, flash
 
 import hashlib, json
 
 app = Flask(__name__)
+app.secret_key = 'thequickbrownfoxjumpedoverthelazydog'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///hmsdata.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -24,7 +25,7 @@ class user(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), nullable=False, unique=True)
-    password = db.Column(db.String(25), nullable=False)
+    password = db.Column(db.String(35), nullable=False)
     role = db.Column(db.Integer, nullable=False) # Admin = 0, Patient = 1, Doctor = 2
     dept_id = db.Column(db.Integer, db.ForeignKey('dept.id'), nullable=True) # dept_id is nullable for patients/admins
     timestmp = db.Column(db.DateTime, default=datetime.utcnow)
@@ -54,16 +55,69 @@ class treatments(db.Model):
 
 @app.route('/')
 def index():
-    return render_template('common.html')
+    return render_template('index.html')
     #return render_template('index.html')
 
-@app.route('/signup')
-def signup():
-     return render_template('signup.html')
+@app.route('/patientdashboard')
+def pdashb():
+     return render_template('patient_dash.html')
 
-@app.route('/login')
+@app.route('/doctordashboard')
+def docdash():
+     return render_template('doc_dash.html')
+
+@app.route('/signup', methods=["POST","GET"])
+def signup():
+     error=None
+     if request.method =="POST":
+            name=request.form['username']
+            email=request.form['email']
+            password=request.form['passwd']
+            password=hashlib.md5(password.encode())
+            password=password.hexdigest()
+            tmpuser = user.query.filter_by(email=email).first()
+            if (tmpuser):
+                 error="User already exists"
+            else:
+                registeruser=user(username=name,email=email,password=password,role=1)
+                db.session.add(registeruser)
+                db.session.commit()
+                return render_template('login.html',error="Registration Successful")
+                 
+
+     return render_template('signup.html',error=error)
+
+@app.route('/login',methods=["POST","GET"])
 def login():
+     error=None
+     if request.method=="POST":
+            useremail=request.form['uemail']
+            password=request.form['passwd']
+            password=hashlib.md5(password.encode())
+            password=password.hexdigest()
+            tmpuser=user.query.filter_by(email=useremail).first()
+            
+            if (tmpuser):
+                if tmpuser.password==password:
+                    match tmpuser.role:
+                        case 0:
+                            print("case1")
+                            return render_template('admin_dash.html',error="Admin Loggedin")
+                        case 1:
+                            return render_template('patient_dash.html',error="Patient Loggedin")
+                        case 2:
+                            return render_template('doc_dash.html',error="Doctor Loggedin")
+                else:
+                    print("Password mismatch")
+                    return render_template('login.html',error="Invalid Credentials")
+            else:
+                    return render_template('login.html',error="Invalid Credentials")
+
      return render_template('login.html')
+
+@app.route('/admindashboard')
+def admindash():
+     return render_template('admin_dash.html')
 
 
 if __name__ == '__main__':
