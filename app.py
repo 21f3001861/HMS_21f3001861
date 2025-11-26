@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template, request, redirect_url, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, date, time
 import hashlib, json
@@ -52,7 +52,7 @@ class treatments(db.Model):
 
 @app.route('/')
 def index():
-    return "<h2> All is well</h2>"
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
