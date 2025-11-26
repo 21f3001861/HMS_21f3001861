@@ -19,32 +19,26 @@
    
   <body>
         {% if user_logged_in %}
+            
         
         {% else %}
-        <ul class="navbar">
-            <li class="brand"><a href="#">Hospital Management System</a></li>
-            
-            <ul class="right-buttons">
-                <li><a href="{{url_for('login')}}" class="default-btn">Login</a></li>
-                <li><a href="{{url_for('signup')}}" class="default-btn">Sign up</a></li>
+            <ul class="navbar">
+                <li class="brand"><a href="#">Hospital Management System</a></li>
+                
+                <ul class="right-buttons">
+                    <li><a href="{{url_for('login')}}" class="default-btn">Login</a></li>
+                    <li><a href="{{url_for('signup')}}" class="default-btn">Sign up</a></li>
+                </ul>
             </ul>
-        </ul>
         
         {% endif %}
         
-        <ul class="navbar">
-            <li class="brand"><a href="#">Hospital Management System</a></li>
-            
-            <ul class="right-buttons">
-                <li><a href="{{url_for('login')}}" class="default-btn">Login</a></li>
-                <li><a href="{{url_for('signup')}}" class="default-btn">Sign up</a></li>
-            </ul>
-        </ul>
+        
     
         {% block content %}
         {% endblock %}
     
-        <footer>&copy;2025-2026 | HMS by 21f3001861</p></footer>
+        <footer>&copy;2025-2026 | HMS by 21f3001861 | <a href="https://thirugns.helioho.st/">Website</a></p></footer>
     
 
     

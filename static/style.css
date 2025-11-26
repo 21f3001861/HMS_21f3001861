@@ -1,8 +1,6 @@
         body {
             background-color: rgb(117, 200, 228);
-            background-image: url('/static/bg.jpg');
-            background-repeat: cover;
-            
+           
         }
         p {
             font-family: Arial, Helvetica, sans-serif;
@@ -16,13 +14,13 @@
             margin: 0;
             padding: 0;
             display: flex;
-            background-color: #333;
+            background-color: #b3ecbd;
             overflow: hidden;
             justify-content: space-between;
             align-items: center;
         }
         .navbar li.brand a {
-            color: white;
+            color: #4CAF50;
             text-align: center;
             padding: 14px 16px; 
             text-decoration: none;
@@ -57,13 +55,13 @@
 
 
         .navbar ul.right-buttons li a.default-btn:hover {
-            background-color: #45a049;
+            background-color: #4CAF50;
         }
         footer { 
             text-align: center;
             font-family: Arial, sans-serif;
             font-size: 0.8em;
-            color:white;
+            color:#0400ff;
             position: absolute;
             bottom: 0;
             width: 100%;
@@ -86,7 +84,7 @@
             text-align: center;
             display: block;
             font-family: Arial, sans-serif;
-            color: #333;
+            color: #4CAF50;
             margin-bottom: 20px;
             font-family: Arial, sans-serif;
         }
