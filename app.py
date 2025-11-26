@@ -1,6 +1,8 @@
-from flask import Flask, render_template, request, redirect_url, url_for, session
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, date, time
+from flask import  render_template, request, url_for, session, redirect
+
 import hashlib, json
 
 app = Flask(__name__)
@@ -52,7 +54,16 @@ class treatments(db.Model):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('common.html')
+    #return render_template('index.html')
+
+@app.route('/signup')
+def signup():
+     return render_template('signup.html')
+
+@app.route('/login')
+def login():
+     return render_template('login.html')
 
 
 if __name__ == '__main__':

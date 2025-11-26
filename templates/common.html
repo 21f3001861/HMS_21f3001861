@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style> 
+        body {
+        background-image: url('./img/bg.jpg');
+        background-repeat: no-repeat;
+        }
+        .navbar {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background-color: #333;
+            overflow: hidden;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar li.brand a {
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 1.5em;
+            font-weight: bold;
+            letter-spacing: 1px;
+            pointer-events: none;
+        }
+
+        .navbar ul.right-buttons {
+            display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 10px;
+        }
+
+        .navbar ul.right-buttons li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            margin: 0 1px;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar ul.right-buttons li a.default-btn{
+            background-color: #4CAF50; 
+            pointer-events: auto;
+        }
+
+
+        .navbar ul.right-buttons li a.default-btn:hover {
+            background-color: #45a049;
+        }
+        .footworx {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 0.8em;
+        
+        }
+        .formcontainer{
+            display: grid;
+            place-items: center; 
+            
+        }
+        .formcontainer h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .form-group {
+            margin-bottom: 15px; 
+        }
+        .form-group label {
+            display: block; 
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+            font-family: Arial, sans-serif;
+            font-size: 0.9em;
+        }
+
+    </style>  
+    <title>Hospital Management System</title>
+  </head>
+   
+  <body>
+    
+        <ul class="navbar">
+            <li class="brand"><a href="#">Hospital Management System</a></li>
+            
+            <ul class="right-buttons">
+                <li><a href="{{url_for('login')}}" class="default-btn">Login</a></li>
+                <li><a href="{{url_for('signup')}}" class="default-btn">Signup</a></li>
+            </ul>
+        </ul>
+    {% block content %}
+    {% endblock %}
+
+    <footer class="footworx">&copy;2025 | HMS by 21f3001861</p></footer>
+  </body>
+</html>
