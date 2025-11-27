@@ -1,8 +1,12 @@
 {% extends "layout.html" %}
 
-{% block title %}<h1>Patient Dashboard</h1> {% endblock %} 
+{% block title %}Patient Dashboard {% endblock %} 
 
 {% block content %}
-    <h3> Patient Dashboard</h3>
+    <h1 class="greetname"> Patient Dashboard</h3>
     <p class=error><strong>Alert</strong>:{{ error }}</p> 
-{% endblock %}
+
+    <h1 class="greetname">Welcome, {{ session.name }}!</h1>
+    <p> Your email {{session.email}}</p>
+
+{% endblock %}  

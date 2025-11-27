@@ -28,6 +28,7 @@ class user(db.Model):
     password = db.Column(db.String(35), nullable=False)
     role = db.Column(db.Integer, nullable=False) # Admin = 0, Patient = 1, Doctor = 2
     dept_id = db.Column(db.Integer, db.ForeignKey('dept.id'), nullable=True) # dept_id is nullable for patients/admins
+    blocked = db.Column(db.Boolean, default=False)
     timestmp = db.Column(db.DateTime, default=datetime.utcnow)
     
     department = db.relationship("departments", back_populates="doctors")
@@ -87,6 +88,15 @@ def signup():
 
      return render_template('signup.html',error=error)
 
+@app.route('/logout')
+def logout():
+     session.clear()
+     return redirect(url_for('login')) 
+
+@app.route('/admin-dashboard')
+def admindash():
+     return render_template('admin_dash.html')
+
 @app.route('/login',methods=["POST","GET"])
 def login():
      error=None
@@ -98,26 +108,38 @@ def login():
             tmpuser=user.query.filter_by(email=useremail).first()
             
             if (tmpuser):
+                if (tmpuser.blocked):
+                    return render_template('accountblocked.html')
                 if tmpuser.password==password:
+                    session['name']=tmpuser.username
+                    session['email']=tmpuser.email
+                    session['id']=tmpuser.id
+                    session['role']=tmpuser.role
                     match tmpuser.role:
                         case 0:
-                            print("case1")
-                            return render_template('admin_dash.html',error="Admin Loggedin")
+                            return redirect(url_for('admindash'))
                         case 1:
-                            return render_template('patient_dash.html',error="Patient Loggedin")
+                            return redirect(url_for('pdashb'))
                         case 2:
-                            return render_template('doc_dash.html',error="Doctor Loggedin")
+                            return redirect(url_for('docdash'))
                 else:
                     print("Password mismatch")
-                    return render_template('login.html',error="Invalid Credentials")
+                    return render_template('login.html',error="Invalid Credentials, try again.")
             else:
-                    return render_template('login.html',error="Invalid Credentials")
+                    return render_template('login.html',error="Invalid Credentials, try again.")
 
      return render_template('login.html')
 
-@app.route('/admindashboard')
-def admindash():
-     return render_template('admin_dash.html')
+@app.route('/bookapt')
+def bookapt():
+     return render_template('/patient_dash.html')
+
+@app.route('/showhistory')
+def showhistory():
+     return render_template('/patient_dash.html')
+
+
+
 
 
 if __name__ == '__main__':

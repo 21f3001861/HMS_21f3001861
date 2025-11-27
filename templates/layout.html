@@ -1,9 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css"  href="/static/style.css">
     <title>Hospital Management System</title>
     {% with messages = get_flashed_messages() %}
@@ -18,10 +16,7 @@
   </head>
    
   <body>
-        {% if user_logged_in %}
-            
-        
-        {% else %}
+        {% if not session %}
             <ul class="navbar">
                 <li class="brand"><a href="#">Hospital Management System</a></li>
                 
@@ -30,6 +25,39 @@
                     <li><a href="{{url_for('signup')}}" class="default-btn">Sign up</a></li>
                 </ul>
             </ul>
+        
+        {% else %}
+            {% set uvalue = session.role %}
+            {% if uvalue == 0 %}
+                <ul class="navbar">
+                    <li class="brand"><a href="#">Hospital Management System</a></li>
+                    <ul class="right-buttons">
+                        <li><a href="#" class="default-btn">Manage Profiles</a></li>
+                        <li><a href="#" class="default-btn">Show Appointments</a></li>
+                        <li><a href="{{url_for('logout')}}" class="default-btn">Logout</a></li>
+                    </ul>
+                </ul>
+            {% elif uvalue == 1 %}
+                <ul class="navbar">
+                    <li class="brand"><a href="#">Hospital Management System</a></li>
+                    
+                    <ul class="right-buttons">
+                        <li><a href="{{url_for('bookapt')}}" class="default-btn">Book Appointment</a></li>
+                        <li><a href="{{url_for('showhistory')}}" class="default-btn">View Appointments</a></li>
+                        <li><a href="{{url_for('logout')}}" class="default-btn">Logout</a>  </li>
+                    </ul>
+                </ul>
+            {% elif uvalue == 2 %}
+                     <ul class="navbar">
+                        <li class="brand"><a href="#">Hospital Management System</a></li>
+                        
+                        <ul class="right-buttons">
+                            <li><a href="#" class="default-btn">View Appointments</a></li>
+                            <li><a href="#" class="default-btn">Mark Availability</a></li>
+                            <li><a href="{{url_for('logout')}}" class="default-btn">Logout</a></li>
+                        </ul>
+                    </ul>
+            {% endif %}
         
         {% endif %}
         
