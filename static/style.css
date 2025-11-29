@@ -12,6 +12,7 @@
 
         h1 {
             font-family: Arial, Helvetica, sans-serif;
+            color: #4CAF50
         }
         .greetname {
             font-family: Arial, Helvetica, sans-serif;
@@ -22,9 +23,10 @@
         .warning {
             font-family: Arial, Helvetica, sans-serif;
             font-size: x-large;
-            color: red
-        }
-        
+            color: red;
+            text-align: center;
+        } 
+
         .navbar {
             list-style-type: none;
             margin: 0;
@@ -35,6 +37,7 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .navbar li.brand a {
             color: #4CAF50;
             text-align: center;
@@ -55,7 +58,7 @@
         }
 
         .navbar ul.right-buttons li a {
-            display: block;
+            display: flex;
             color: white;
             text-align: center;
             padding: 5px 16px;
@@ -66,22 +69,24 @@
 
         .navbar ul.right-buttons li a.default-btn{
             background-color: #4CAF50; 
-            pointer-events: auto;
+            
         }
 
 
         .navbar ul.right-buttons li a.default-btn:hover {
             background-color: #4CAF50;
         }
+
         footer { 
             text-align: center;
             font-family: Arial, sans-serif;
             font-size: 0.8em;
             color:#0400ff;
-            position: absolute;
+            position: fixed;
             bottom: 0;
             width: 100%;
         }
+
         .formcontainer {
             width: 350px;
             position:absolute;
@@ -90,12 +95,10 @@
             padding: 20px;
             background-color: #b3ecbd;
             border-radius: 8px;
-            border: 12px solid-blue;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 
         }
-            
-            
+              
         .formcontainer h2 {
             text-align: center;
             display: block;
@@ -104,9 +107,11 @@
             margin-bottom: 20px;
             font-family: Arial, sans-serif;
         }
+
         .form-group {
             margin-bottom: 15px; 
         }
+
         .form-group label {
             display: block; 
             margin-bottom: 5px;
@@ -126,3 +131,53 @@
             font-weight: bold;
             
         }
+
+        .pagewide {
+            float: left;
+            width: 46%;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #b3ecbd;
+            padding: 15px;
+            margin: 25px;
+            height: 300px;
+            overflow-y: scroll;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .pagewide h2 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: large;
+            position: sticky;
+            display: block;
+            top:0;
+            width: 98%;
+            background-color: #555;
+            padding:5px;
+            color: white;
+        }
+
+        .pagepanel {
+            float: left;
+            width: 75%;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #b3ecbd;
+            padding: 15px;
+            margin: 25px;
+            height: 300px;
+            overflow-y: scroll;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .pagepanel h2 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: large;
+            position: sticky;
+            display: block;
+            top:0;
+            width: 98%;
+            background-color: #555;
+            padding:5px;
+            color: white;
+        }
+      
+ 

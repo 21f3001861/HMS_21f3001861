@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}<h1>Welcome to HMS</h1> {% endblock %} 
+ 
+
+{% block content %}
+<div class="pagewide">
+    <a href="/admin-dashboard">Return to dashboard</a>
+    <h2>{{ depts.dept_name | title }} Department Details</h2>
+    <p>{{ depts.description}} </p>
+    
+    {% if doclist %}
+        <table style="width:99%; border-collapse: collapse;">
+            <tr>
+                <th style="padding: 10px; border: 1px solid #037a1d; text-align:center;height: 25px;">Doctor Name</th>
+                 <th style="padding: 10px; border: 1px solid #037a1d; text-align:center;height: 25px;">Actions</th>
+            </tr>
+        
+            {% for d in doclist%}
+                <tr>
+                    <td style="text-align: center;border: 1px solid #037a1d; height: 20px;">{{ d.username }}</td>
+                    <td style="text-align: center;border: 1px solid #037a1d; height: 20px;"><a href="/admin-dashboard/view_docs/{{d.email}}"><img src="/static/viewdets.png" title="View Details" width="20" height="20" alt="View Details"></a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h2>Did not find any doctors in department: {{ depts.dept_name | title }}</h2>
+        
+    {% endif %}
+    </div>
+    
+   
+{% endblock %}

@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css"  href="/static/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=search" />
+    
+
     <title>Hospital Management System</title>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -30,29 +33,31 @@
             {% set uvalue = session.role %}
             {% if uvalue == 0 %}
                 <ul class="navbar">
-                    <li class="brand"><a href="#">Hospital Management System</a></li>
+                    <li class="brand"><a href="#">Hospital Management System | Admin Dashboard</a></li>
                     <ul class="right-buttons">
-                        <li><a href="#" class="default-btn">Manage Profiles</a></li>
-                        <li><a href="#" class="default-btn">Show Appointments</a></li>
+                    <form action="#" method="post">
+                        <input type="search" size="50" id="searchrecs" name="searchrec" placeholder="Enter name of Doctor/Patient/Department">
+                        <button type="Submit">Search</button>
+                    </form>
                         <li><a href="{{url_for('logout')}}" class="default-btn">Logout</a></li>
                     </ul>
                 </ul>
+                
             {% elif uvalue == 1 %}
                 <ul class="navbar">
-                    <li class="brand"><a href="#">Hospital Management System</a></li>
+                    <li class="brand"><a href="#">Hospital Management System | Hello {{ session.name | title }} | Patient Dashboard</a></li>
                     
                     <ul class="right-buttons">
-                        <li><a href="{{url_for('bookapt')}}" class="default-btn">Book Appointment</a></li>
-                        <li><a href="{{url_for('showhistory')}}" class="default-btn">View Appointments</a></li>
+                        <li><a href="#" class="default-btn">Edit Profile</a></li>
+                        <li><a href="{{url_for('showhistory')}}" class="default-btn">History</a></li>
                         <li><a href="{{url_for('logout')}}" class="default-btn">Logout</a>  </li>
                     </ul>
                 </ul>
             {% elif uvalue == 2 %}
                      <ul class="navbar">
-                        <li class="brand"><a href="#">Hospital Management System</a></li>
+                        <li class="brand"><a href="#">Hospital Management System | Hello Dr. {{ session.name | title }} | Doctor Dashboard</a></li>
                         
                         <ul class="right-buttons">
-                            <li><a href="#" class="default-btn">View Appointments</a></li>
                             <li><a href="#" class="default-btn">Mark Availability</a></li>
                             <li><a href="{{url_for('logout')}}" class="default-btn">Logout</a></li>
                         </ul>

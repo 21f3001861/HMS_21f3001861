@@ -1,12 +1,31 @@
 {% extends "layout.html" %}
 
-{% block title %}Patient Dashboard {% endblock %} 
+{% block title %} {% endblock %} 
 
 {% block content %}
-    <h1 class="greetname"> Patient Dashboard</h3>
-    <p class=error><strong>Alert</strong>:{{ error }}</p> 
+    <div class="pagewide">
+        <h2>Upcomming Appointments</h2>
+    </div>
+    <div class="pagewide">
+        <h2>Departments </h2>
+        
+        <table style="width:99%; border-collapse: collapse;">
+            <tr>
+                <th style="padding: 10px; border: 1px solid #037a1d; text-align:center;height: 25px;">Department Name</th>
+                <th style="padding: 10px; border: 1px solid #037a1d; text-align:center;">Description</th>
+                <th style="padding: 10px; border: 1px solid #037a1d; text-align:center;">Action</th>
+            </tr>
+                    {% for dp in dept %}
+                        <tr >
+                            <td style="text-align: center;border: 1px solid #037a1d; height: 20px;">{{ dp.dept_name | title }}</td>
+                            <td style="text-align: center;border: 1px solid #037a1d;">{{ dp.description }}</td>
+                            <td style="text-align: center;border: 1px solid #037a1d;">
+                                <a href="#"><img src="/static/viewdets.png" title="View Details" width="20" height="20" alt="View Details"></a>
 
-    <h1 class="greetname">Welcome, {{ session.name }}!</h1>
-    <p> Your email {{session.email}}</p>
+                            </td>
+                        </tr>
+                    {% endfor %}
+        </table>
+    </div>
 
-{% endblock %}  
+{% endblock %}

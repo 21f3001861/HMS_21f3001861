@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}<h1>Welcome to HMS</h1> {% endblock %} 
+ 
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+
+{% block content %}
+<div class="formcontainer">
+        <h2>Delete Department</h2>
+        {% if "New" in error %}
+            <p class=error><strong>Alert:</strong>{{ error }}</p> 
+        {% elif "exists" in error %}
+            <p class=error><strong>Error:</strong>{{ error }}</p> 
+        {% endif %}
+        <form action="/admin-dashboard/del_dept" method="post">
+            <div class="form-group">
+                <p><label>Department Name</label>
+                <input  name='deptname' type="text" id="deptname" placeholder="Department Name" disabled></p>
+            </div>
+            <div class="form-group">
+                <p><label>Description</label>
+                <textarea rows="5" cols="40" name='desc' type="text" id="desc" placeholder="Enter detailed description of the department activities" disabled></textarea>  </p>
+            </div>
+            
+            <div class="form-group">
+                <button  type="submit">Delete Department</button>
+                <p><a href="/admin-dashboard" >Go To Dashboard</a></p>
+            </div>
+        </form>
+    </div>
+    
+   
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}<h1>Welcome to HMS</h1> {% endblock %} 
+ 
+
+{% block content %}
+<div class="pagepanel">
+    <a href="/admin-dashboard">Return to dashboard</a>
+    <h2>Doctor: {{ docdet.username | title }} | Department: {{ dept.dept_name | title }}</h2>
+   
+    
+        {% if apts  %}  
+                <table style="width:99%; border-collapse: collapse;">
+                    <tr>
+                        <th style="padding: 10px; border: 1px solid #037a1d; text-align:center;height: 25px;">Patient Name</th>
+                        <th style="padding: 10px; border: 1px solid #037a1d; text-align:center;height: 25px;">Date</th>
+                        <th style="padding: 10px; border: 1px solid #037a1d; text-align:center;height: 25px;">Time</th>
+                        <th style="padding: 10px; border: 1px solid #037a1d; text-align:center;height: 25px;">Status</th>
+                        <th style="padding: 10px; border: 1px solid #037a1d; text-align:center;height: 25px;">Actions</th>
+                    </tr>
+            {% for a in apts %}
+                <tr>
+                    <td style="text-align: center;border: 1px solid #037a1d; height: 20px;">{{ a.patient_id}}</td>
+                    <td style="text-align: center;border: 1px solid #037a1d; height: 20px;">{{ a.date}}</td>
+                    <td style="text-align: center;border: 1px solid #037a1d; height: 20px;">{{ a.time}}</td>
+                    <td style="text-align: center;border: 1px solid #037a1d; height: 20px;">{{ a.status}}</td>
+                    <td style="text-align: center;border: 1px solid #037a1d; height: 20px;"><a href="#"><img src="/static/viewdets.png" title="View Details" width="20" height="20" alt="View Details"></a></td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <h2>No Appointments Found</h2>
+        {% endif %}
+
+    </table>
+    </div>
+    
+   
+{% endblock %}

@@ -1,11 +1,98 @@
 {% extends "layout.html" %}
 
 {% block title %}
-<h1>Admin Dashboard</h1> 
+
 {% endblock %} 
 
 {% block content %}
-    <h3> Admin Dashboard</h3>
-    <p class=error><strong>Alert</strong>:{{ error }}</p> 
-    <h1 class="greetname">Hello {{ session.name }}, Welcome back!</h1>
+    <div class="pagewide">
+        <h2>Registered Doctors <a href="/admin-dashboard/adddoc"><img src="/static/Add-icon.png" title="Add Doctor" width="16" height="16" alt="Add Doctor" ></a></h2>
+
+         <table style="width:99%; border-collapse: collapse;">
+            <tr>
+                <th style="padding: 10px; border: 1px solid #029221; text-align:center;height: 25px;">Doctor Name</th>
+                <th style="padding: 10px; border: 1px solid #037a1d; text-align:center;">E-mail</th>
+                <th style="padding: 10px; border: 1px solid #037a1d; text-align:center;">Action</th>
+            </tr>
+                    {% for dr in docts %}
+                        {% if not dr.deleted %}
+                            <tr >
+                                <td style="text-align: center;border: 1px solid #037a1d; height: 20px;">{{ dr.username | title }} 
+                                    {% if dr.blocked %}
+                                        <img src="/static/Sign-Stop-icon.png" width="12" height="12" title="Blocked"> 
+                                    {% endif %}
+                                </td>
+                                <td style="text-align: center;border: 1px solid #037a1d;">{{ dr.email | lower }}</td>
+                                <td style="text-align: center;border: 1px solid #037a1d;">
+                                    <a href="/admin-dashboard/view_docs/{{ dr.email }}"><img src="/static/viewdets.png" title="View Details" width="20" height="20" alt="View Details"></a>
+                                    <a href="#"><img src="/static/edit-file-icon.png" title="Edit" width="20" height="20" alt="Edit Record"></a> 
+                                    <a href="#"><img src="/static/delete.png" title="Delete" width="20" height="20" alt="Delete User"></a>
+                                    {% if not dr.blocked %}
+                                        <a href="#"><img src="/static/blocked-icon.png" title="Block" width="20" height="20" alt="Block User" ></a>
+                                    {% else %}
+                                        <a href="#"><img src="/static/tick.png" title="Unblock" width="20" height="20" alt="Unblock user" ></a>
+                                    {% endif %} 
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+        </table>
+    </div>
+     <div class="pagewide">
+        <h2>Departments <a href="/admin-dashboard/add_dept"><img src="/static/Add-icon.png" title="Add Department" width="16" height="16" alt="Add Department"></a> </h2>
+        
+        <table style="width:99%; border-collapse: collapse;">
+            <tr>
+                <th style="padding: 10px; border: 1px solid #037a1d; text-align:center;height: 25px;">Department Name</th>
+                <th style="padding: 10px; border: 1px solid #037a1d; text-align:center; width: 70%">Description</th>
+                <th style="padding: 10px; border: 1px solid #037a1d; text-align:center;">Action</th>
+            </tr>
+                    {% for dp in depts %}
+                        {% if not dp.deleted %}
+                            <tr >
+                                <td style="text-align: center;border: 1px solid #037a1d; height: 20px;">{{ dp.dept_name | title }}</td>
+                                <td style="text-align: justify;border: 1px solid #037a1d;">{{ dp.description }}</td>
+                                <td style="text-align: center;border: 1px solid #037a1d;">
+                                    <a href="/admin-dashboard/view_dept/{{ dp.id }}">
+                                        <img src="/static/viewdets.png" title="View Details" width="20" height="20" alt="View Details"></a>
+                                    <a href="#"><img src="/static/edit-file-icon.png" title="Edit" width="20" height="20" alt="Edit Record"></a>
+                                    <a href="#"><img src="/static/delete.png" title="Delete" width="20" height="20" alt="Delete User"></a>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+        </table>
+    </div>
+    <div class="pagewide">
+        <h2>Registered Patients</h2>
+        <table style="width:99%; border-collapse: collapse;">
+            <tr>
+                <th style="padding: 10px; border: 1px solid #037a1d; text-align:center; height: 25px;">Patient Name</th>
+                <th style="padding: 10px; border: 1px solid #037a1d; text-align:center;">E-mail</th>
+                <th style="padding: 10px; border: 1px solid #037a1d; text-align:center;">Action</th>
+            </tr>
+                    {% for pr in pats %}
+                        <tr >
+                            <td style="text-align: center;border: 1px solid #037a1d; height: 20px;">{{ pr.username | title }}{% if pr.blocked %}
+                                    <img src="/static/Sign-Stop-icon.png" width="12" height="12" title="Blocked"> 
+                                {% endif %}</td>
+                            <td style="text-align: center;border: 1px solid #037a1d;">{{ pr.email | lower }}</td>
+                            <td style="text-align: center;border: 1px solid #037a1d;">
+                                <a href="#"><img src="/static/viewdets.png" title="View Details" width="20" height="20" alt="View Details"></a>
+                                <a href="#"><img src="/static/edit-file-icon.png" title="Edit" width="20" height="20" alt="Edit Record"></a>
+                                <a href="#"><img src="/static/delete.png" title="Delete" width="20" height="20" alt="Delete User"></a>
+                                {% if not pr.blocked %}
+                                    <a href="#"><img src="/static/blocked-icon.png" title="Block" width="20" height="20" alt="Block User" ></a>
+                               {% else %}
+                                    <a href="#"><img src="/static/tick.png" title="Unblock User" width="20" height="20" alt="Unblock user" ></a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+        </table>
+    </div>
+    <div class="pagewide">
+        <h2>Upcomming Appointments</h2>
+    </div>
+
 {% endblock %}

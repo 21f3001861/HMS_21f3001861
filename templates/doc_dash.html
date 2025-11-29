@@ -3,8 +3,11 @@
 {% block title %} {% endblock %} 
 
 {% block content %}
-    <h1 class="greetname"> Doctor Dashboard</h3>
-    <h1 class="greetname">Welcome back, Dr. {{ session.name }}!</h1>
-    <p> Your email {{session.email}}</p>
+    <div class="pagewide">
+        <h2>Upcomming Appointments</h2>
+    </div>
+    <div class="pagewide">
+        <h2>Assigned Patients</h2>
+    </div>
 
-{% endblock %}  
+{% endblock %}
